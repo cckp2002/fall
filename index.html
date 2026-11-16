@@ -23,6 +23,67 @@
     @media (max-width:370px){.top-note{display:none}.hero{min-height:526px}.hero-copy{padding:29px 19px 0}.hero-meta{gap:6px}.hero-meta span{font-size:11px}.schedule{padding:3px 12px}.step{grid-template-columns:65px 11px minmax(0,1fr);gap:9px}.step-body strong{font-size:15px}.event-card h3{font-size:20px}}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.chevron{transition:none}}
     @media print{body{background:white}.shell{max-width:none}.hero{box-shadow:none}.schedule,.event-card{box-shadow:none}.accordion .move-content{display:block!important}footer a{display:none}}
+
+
+/* INTERACTIVE EVENT GUIDE: collapsible timeline and event cards */
+.section-hint{color:#9b7158}
+.timeline-list{background:#fffdfa;border:1px solid var(--line);border-radius:24px;padding:12px 25px 12px 23px;box-shadow:0 7px 33px rgba(91,58,36,.035)}
+.timeline-item{display:grid;grid-template-columns:99px 20px minmax(0,1fr);gap:16px;padding:10px 0;position:relative}
+.timeline-item+.timeline-item{border-top:1px solid #f0e8df}
+.timeline-clock{padding-top:21px;color:#4e3a30;font-size:18px;font-weight:850;line-height:1.23;letter-spacing:-.025em}
+.timeline-clock small{display:block;font-size:12px;color:#a2978c;font-weight:550;margin-top:5px}
+.timeline-spine{position:relative;display:flex;justify-content:center}
+.timeline-spine:before{position:absolute;content:"";width:2px;left:calc(50% - 1px);top:31px;bottom:-20px;background:#ead9c6}
+.timeline-item:last-of-type .timeline-spine:before{display:none}
+.timeline-spine:after{position:absolute;content:"";top:24px;width:12px;height:12px;border-radius:99px;background:#fff;border:3px solid #c67c55;box-shadow:0 0 0 4px #fbefe3}
+.timeline-item:first-child .timeline-spine:after{background:#a65035}
+.timeline-card{min-width:0;border-radius:16px;transition:background .18s,border-color .18s;border:1px solid transparent;overflow:hidden}
+.timeline-card[open]{border-color:#efdeca;background:#fff9f0}
+.timeline-trigger{display:flex;gap:12px;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;min-height:100px;padding:13px 13px 14px 17px;outline-offset:-3px;border-radius:15px}
+.timeline-trigger::-webkit-details-marker,.event-trigger::-webkit-details-marker{display:none}
+.timeline-title{flex:1;min-width:0}
+.timeline-where{color:#9c5e42;font-size:12px;font-weight:790;letter-spacing:-.005em}
+.timeline-title h3{font-size:18px;line-height:1.4;font-weight:820;letter-spacing:-.045em;margin:3px 0 4px}
+.timeline-title p{color:#777067;font-size:13.5px;line-height:1.55;margin:0}
+.timeline-action{flex:none;color:#985037;background:#f9ebdc;border:1px solid #edd7c2;padding:7px 10px 7px 12px;border-radius:100px;font-size:12px;font-weight:780;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.timeline-action svg,.event-action svg{width:15px;height:15px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.timeline-card[open] .timeline-action svg,.event-card[open] .event-action svg{transform:rotate(180deg)}
+.timeline-panel{margin:0 15px 17px 17px;padding-top:16px;border-top:1px solid #ead9c5;font-size:14px;color:#5e5349;line-height:1.72}
+.timeline-panel h4{font-size:14px;margin:0 0 8px;color:#684130;font-weight:800}
+.timeline-panel p{margin:5px 0 9px}
+.timeline-panel ul{margin:3px 0 0;padding-left:20px}
+.timeline-panel li{padding:3px 0}
+.timeline-panel strong{color:#84452f}
+.travel-choice{padding:11px 12px;border:1px solid #eddfcf;border-radius:12px;background:#fffefa;margin:9px 0;display:flex;gap:12px;align-items:flex-start}
+.travel-number{width:28px;height:28px;border-radius:9px;background:#f8e5d0;display:grid;place-items:center;flex:none;font-size:11px;color:#96492f;font-weight:850}
+.travel-choice p{margin:0;font-size:13px;line-height:1.6}
+.travel-choice p strong{display:block;color:#4c382d;font-size:13.5px;margin-bottom:2px}
+.info-strip{font-size:12.5px;background:#f6ebdc;padding:10px 12px;border-radius:10px;color:#766451;margin-top:12px;line-height:1.7}
+.timeline-transfer{margin:0 0 1px 135px;display:flex;align-items:center;gap:11px;color:#988573;font-size:12.5px;font-weight:650;padding:3px 17px 8px;letter-spacing:-.01em}
+.timeline-transfer .transfer-mark{display:inline-grid;place-items:center;background:#f7eee3;width:27px;height:27px;border-radius:10px;color:#ad7450;flex:none}
+.timeline-transfer strong{color:#8b6953;font-size:12px;margin-right:4px}
+.timeline-inline-note{margin-top:12px;color:#866e58;font-size:12.5px}
+.event-grid{align-items:start}
+.event-card{min-height:unset;padding:0;transition:border-color .18s,box-shadow .18s;overflow:hidden}
+.event-card[open]{border-color:#e9d3b9;box-shadow:0 10px 26px rgba(91,58,36,.055)}
+.event-trigger{list-style:none;cursor:pointer;display:block;position:relative;z-index:1;padding:27px 28px 23px;border-radius:22px;min-height:222px}
+.event-card h3{margin:9px 0 10px;font-size:23px}
+.event-quote{margin:0 0 22px;font-size:14.5px}
+.event-action{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:820;color:#9b5535;background:#fff7ea;border:1px solid #eedfc8;border-radius:99px;padding:8px 12px;position:relative;z-index:2}
+.event-card.b .event-action{color:#566c49;background:#f5f8ee;border-color:#dfe8d7}
+.event-reveal{padding:18px 29px 23px;border-top:1px solid #efe2d2;background:rgba(255,255,255,.68);font-size:13.5px;color:#61564d;line-height:1.75}
+.event-reveal ol{padding-left:20px;margin:0}
+.event-reveal li{padding:2px 0}
+.event-reveal strong{color:#85503b}
+.event-tip{font-size:12px;margin:11px 0 0;color:#857567}
+.event-ornament{pointer-events:none}
+.quick-help{display:inline-flex;align-items:center;gap:6px;color:#a36c4e;font-weight:650;font-size:13px;margin:9px 0 0}
+.quick-help svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+@media (hover:hover){.timeline-trigger:hover{background:rgba(244,228,209,.32)}.event-trigger:hover{background:rgba(242,220,198,.18)}}
+@media (max-width:800px){.timeline-list{padding:7px 14px}.timeline-item{grid-template-columns:75px 16px minmax(0,1fr);gap:10px}.timeline-clock{font-size:15px}.timeline-clock small{font-size:10px}.timeline-trigger{padding:13px 9px 13px 10px}.timeline-title h3{font-size:16px}.timeline-title p{font-size:12px}.timeline-action{font-size:11px;padding:6px 8px}.timeline-transfer{margin-left:96px;padding-left:8px}}
+@media (max-width:540px){.timeline-list{padding:5px 9px;border-radius:20px}.timeline-item{grid-template-columns:64px 11px minmax(0,1fr);gap:7px;padding:8px 0}.timeline-clock{font-size:13px;padding-top:19px}.timeline-clock small{font-size:10px}.timeline-spine:after{top:21px;width:10px;height:10px;border-width:2px;box-shadow:0 0 0 3px #fbefe3}.timeline-spine:before{top:30px;bottom:-17px}.timeline-trigger{min-height:88px;align-items:flex-start;padding:10px 6px 11px 7px;display:flex;gap:5px;flex-direction:column}.timeline-title h3{font-size:15.5px;margin:1px 0 4px}.timeline-where{font-size:10.5px}.timeline-title p{font-size:12px}.timeline-action{font-size:10.5px;padding:4px 8px;margin-top:4px}.timeline-panel{margin:0 9px 13px 7px;padding-top:12px;font-size:12.5px}.timeline-panel h4{font-size:13px}.timeline-panel li{padding:2px 0}.travel-choice{padding:9px;gap:8px}.travel-choice p{font-size:11.5px}.travel-choice p strong{font-size:12px}.travel-number{width:24px;height:24px;font-size:10px}.info-strip{font-size:11px}.timeline-transfer{margin-left:77px;padding:2px 4px 9px;gap:8px;font-size:10.8px}.timeline-transfer strong{font-size:11px}.timeline-transfer .transfer-mark{width:24px;height:24px}.event-trigger{min-height:190px;padding:22px 22px 19px}.event-quote{margin-bottom:16px}.event-reveal{padding:15px 22px 19px;font-size:12.5px}.quick-help{font-size:12px}}
+@media (prefers-reduced-motion: reduce){.timeline-card,.event-card,.timeline-action svg,.event-action svg{transition:none}}
+
   </style>
 </head>
 <body>
@@ -81,50 +142,102 @@
         </div>
       </section>
 
+
       <section class="section" id="schedule" aria-labelledby="schedule-title">
-        <div class="section-head"><div><p class="section-kicker">OUR DAY</p><h2 id="schedule-title">일정 한눈에 보기</h2></div><p class="section-hint">걸으며, 나누며, 함께하는 하루</p></div>
-        <div class="schedule">
-          <div class="step"><div class="time">13:30<small>~ 14:30</small></div><div class="rail"><span class="dot"></span></div><div class="step-body"><p class="where">출발 · 차량 이동</p><strong>석남사로 출발</strong><p>부서별로 이동 방법을 정해 함께 출발합니다.</p></div></div>
-          <div class="step"><div class="time">14:30<small>~ 15:20</small></div><div class="rail"><span class="dot"></span></div><div class="step-body"><p class="where">석남사</p><strong>가을 산책 &amp; 단풍 어워즈</strong><p>가장 마음에 드는 단풍잎 한 장을 골라보세요.</p></div></div>
-          <div class="step"><div class="time">15:35<small>~ 17:00</small></div><div class="rail"><span class="dot"></span></div><div class="step-body"><p class="where">카페 먹</p><strong>서로나눔 평가회 &amp; 보물찾기</strong><p>차 한 잔과 함께 올해를 돌아보고, 숲속의 보물 쪽지도 찾아봅니다.</p></div></div>
-          <div class="step"><div class="time">17:15<small>~ 20:00</small></div><div class="rail"><span class="dot"></span></div><div class="step-body"><p class="where">언양 1번가 주먹떡갈비</p><strong>저녁 다모임 &amp; 선물 시상</strong><p>맛있는 저녁, 단풍 어워즈 결과 발표와 보물찾기 선물 증정!</p></div></div>
+        <div class="section-head"><div><p class="section-kicker">OUR DAY</p><h2 id="schedule-title">일정 한눈에 보기</h2><p class="quick-help"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>각 일정을 누르면 자세한 내용이 열립니다.</p></div></div>
+        <div class="timeline-list">
+          <div class="timeline-item">
+            <div class="timeline-clock">13:30<small>~ 14:30</small></div><div class="timeline-spine" aria-hidden="true"></div>
+            <details class="timeline-card" id="depart">
+              <summary class="timeline-trigger">
+                <div class="timeline-title"><span class="timeline-where">학교 → 석남사</span><h3>석남사로 출발</h3><p>부서별로 이동 방법을 정해 출발합니다.</p></div>
+                <span class="timeline-action">이동방법 보기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              </summary>
+              <div class="timeline-panel">
+                <h4>부서별 차량 이동 · 주차 안내</h4>
+                <p>부서별로 협의해 아래 세 가지 방법 중 편한 방법을 선택해 주세요.</p>
+                <div class="travel-choice"><span class="travel-number">01</span><p><strong>언양 공영주차장 집결</strong>언양 1번가 주먹떡갈비 맞은편 공영주차장에 주차 → 부서별 차량에 나누어 탑승 → 석남사</p></div>
+                <div class="travel-choice"><span class="travel-number">02</span><p><strong>학교에서 함께 출발</strong>학교에서 부서별 차량에 함께 탑승 → 석남사</p></div>
+                <div class="travel-choice"><span class="travel-number">03</span><p><strong>문수체육관 주차장 집결</strong>문수체육관 주차장에 주차 → 부서별 차량에 나누어 탑승 → 석남사</p></div>
+                <div class="info-strip"><strong>주차비</strong> · 언양 공영주차장 및 석남사 주차비는 친목회 지원 / 문수체육관 주차장 평일 무료<br><strong>참고 이동시간</strong> · 학교 → 언양 공영주차장 약 40분, 언양 → 석남사 약 20분</div>
+              </div>
+            </details>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-clock">14:30<small>~ 15:20</small></div><div class="timeline-spine" aria-hidden="true"></div>
+            <details class="timeline-card" id="autumn-walk">
+              <summary class="timeline-trigger">
+                <div class="timeline-title"><span class="timeline-where">석남사</span><h3>가을 산책 &amp; 단풍 어워즈</h3><p>가장 마음에 드는 단풍잎 한 장을 골라보세요.</p></div>
+                <span class="timeline-action">자세히 보기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              </summary>
+              <div class="timeline-panel">
+                <h4>단풍 어워즈! AI의 선택은?</h4>
+                <ul><li>산책하면서 마음에 드는 <strong>떨어진 단풍잎 1장</strong>을 선택해 주세요.</li><li>잎이 훼손되지 않도록 보관해 <strong>카페 먹에서 실물 제출</strong>해 주세요. 사진은 제출 대상이 아닙니다.</li><li>제출: <strong>조철연 또는 송준혁 선생님</strong></li><li>AI 심사 결과 및 상품은 저녁 다모임에서 공개합니다.</li></ul>
+              </div>
+            </details>
+          </div>
+          <div class="timeline-transfer"><span class="transfer-mark" aria-hidden="true">↗</span><span><strong>15:20 ~ 15:35</strong> 석남사 → 카페 먹 이동</span></div>
+          <div class="timeline-item">
+            <div class="timeline-clock">15:35<small>~ 17:00</small></div><div class="timeline-spine" aria-hidden="true"></div>
+            <details class="timeline-card" id="meeting">
+              <summary class="timeline-trigger">
+                <div class="timeline-title"><span class="timeline-where">카페 먹</span><h3>서로나눔 평가회 &amp; 보물찾기</h3><p>차 한 잔의 대화, 그리고 숲속의 작은 이벤트.</p></div>
+                <span class="timeline-action">자세히 보기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              </summary>
+              <div class="timeline-panel">
+                <h4>차 한 잔과 함께하는 서로나눔 평가회</h4>
+                <p>한 해 교육활동을 돌아보고 서로의 이야기와 생각을 나눕니다.</p>
+                <h4 style="margin-top:14px">말이 되는 보물찾기</h4>
+                <ul><li>카페 먹 숲의 지정된 구역에서 <strong>노란색 보물 쪽지</strong>를 찾아보세요.</li><li>보물 쪽지는 <strong>1인 1장</strong>만 소지해 주세요. 여러 장을 찾았다면 아직 찾지 못한 동료에게 양보해 주세요.</li><li>쪽지는 잘 보관했다가 저녁 다모임에서 선물의 문구와 짝을 맞춰 주세요.</li></ul>
+              </div>
+            </details>
+          </div>
+          <div class="timeline-transfer"><span class="transfer-mark" aria-hidden="true">↗</span><span><strong>17:00 ~ 17:10</strong> 카페 먹 → 저녁 식사 장소 이동</span></div>
+          <div class="timeline-item">
+            <div class="timeline-clock">17:15<small>~ 20:00</small></div><div class="timeline-spine" aria-hidden="true"></div>
+            <details class="timeline-card" id="dinner">
+              <summary class="timeline-trigger">
+                <div class="timeline-title"><span class="timeline-where">언양 1번가 주먹떡갈비</span><h3>저녁 다모임 &amp; 선물 시상</h3><p>맛있는 저녁, AI 심사 결과 발표와 보물 증정.</p></div>
+                <span class="timeline-action">자세히 보기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              </summary>
+              <div class="timeline-panel">
+                <ul><li>함께하는 저녁 식사와 교직원 친목의 시간</li><li><strong>단풍 어워즈</strong> AI 심사 결과 발표 및 상품 수여</li><li><strong>말이 되는 보물찾기</strong> 앞·뒷문장 맞추기 및 선물 증정</li></ul>
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
       <section class="section" id="events" aria-labelledby="event-title">
-        <div class="section-head"><div><p class="section-kicker">TWO LITTLE EVENTS</p><h2 id="event-title">오늘의 작은 재미</h2></div><p class="section-hint">부담 없이, 재미있게 참여해 주세요.</p></div>
+        <div class="section-head"><div><p class="section-kicker">LITTLE EVENTS</p><h2 id="event-title">오늘의 작은 재미</h2><p class="quick-help"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>이벤트 카드를 누르면 참여 방법이 나옵니다.</p></div></div>
         <div class="event-grid">
-          <article class="event-card a">
-            <div class="event-head"><span class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-2-4.4-2-8 0-13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 7C8.5 3 3.5 5.5 4 10c.4 3.9 3.7 6 8 6 4.3 0 7.6-2.1 8-6 .5-4.5-4.5-7-8-3Z" fill="currentColor" opacity=".87"/><path d="M7 10c1 1 3 3 5 6 2-3 4-5 5-6" stroke="#fff4df" stroke-width="1.2"/></svg></span><span class="event-type">EVENT 01 · 석남사</span></div>
-            <h3>단풍 어워즈! AI의 선택은?</h3>
-            <p class="event-quote">“심사는 AI가 합니다. 결과에 대한 항의는 받지 않습니다.”</p>
-            <p class="event-detail">떨어진 단풍잎 한 장을 골라 <strong>카페 먹에서 실물 제출!</strong><br>제출: 조철연 · 송준혁 선생님</p>
-            <svg class="event-ornament" viewBox="0 0 100 100" aria-hidden="true"><path d="M49 91V52M49 52 34 36 24 39 25 25 12 21 26 14 22 3 39 9 49 0 59 9 76 3 72 14 86 21 73 25 74 39 64 36 49 52" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></svg>
-          </article>
-          <article class="event-card b">
-            <div class="event-head"><span class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="10" width="18" height="11" rx="2.3" stroke="currentColor" stroke-width="1.7"/><path d="M2 9.5h20M12 10v11M12 9c-6 0-8-3.8-6-5.3 2.4-1.9 6 2.3 6 5.3Zm0 0c6 0 8-3.8 6-5.3-2.4-1.9-6 2.3-6 5.3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="event-type">EVENT 02 · 카페 먹</span></div>
-            <h3>말이 되는 보물찾기</h3>
-            <p class="event-quote">“쪽지를 찾았다면 반은 성공! 나머지 반은 저녁에.”</p>
-            <p class="event-detail">카페 숲속 <strong>노란 쪽지는 1인 1장.</strong><br>저녁 식당에서 문장의 짝을 찾으면 선물을 드립니다.</p>
-            <svg class="event-ornament" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 41 50 25 84 41v38l-34 15-34-15V41ZM16 41l34 15 34-15M50 56v38" stroke="currentColor" stroke-width="5" fill="none" stroke-linejoin="round"/><path d="m50 25 16 8-34 15-16-7" stroke="currentColor" stroke-width="4" fill="none"/></svg>
-          </article>
+          <details class="event-card a" id="leaf-event">
+            <summary class="event-trigger">
+              <div class="event-head"><span class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-2-4.4-2-8 0-13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 7C8.5 3 3.5 5.5 4 10c.4 3.9 3.7 6 8 6 4.3 0 7.6-2.1 8-6 .5-4.5-4.5-7-8-3Z" fill="currentColor" opacity=".87"/><path d="M7 10c1 1 3 3 5 6 2-3 4-5 5-6" stroke="#fff4df" stroke-width="1.2"/></svg></span><span class="event-type">EVENT 01 · 석남사</span></div>
+              <h3>단풍 어워즈! AI의 선택은?</h3>
+              <p class="event-quote">“심사는 AI가 합니다. 결과에 대한 항의는 받지 않습니다.”</p>
+              <span class="event-action">참여 방법 보기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              <svg class="event-ornament" viewBox="0 0 100 100" aria-hidden="true"><path d="M49 91V52M49 52 34 36 24 39 25 25 12 21 26 14 22 3 39 9 49 0 59 9 76 3 72 14 86 21 73 25 74 39 64 36 49 52" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></svg>
+            </summary>
+            <div class="event-reveal">
+              <ol><li>석남사를 걸으며 <strong>단풍잎 한 장</strong>을 골라요.</li><li>잎이 상하지 않게 <strong>실물</strong>을 챙겨요.</li><li>카페 먹에서 <strong>조철연·송준혁 선생님</strong>께 제출하면 끝!</li></ol>
+              <p class="event-tip">※ 사진 대신 실물 제출 / AI 심사 및 시상은 저녁 행사에서 진행</p>
+            </div>
+          </details>
+          <details class="event-card b" id="treasure-event">
+            <summary class="event-trigger">
+              <div class="event-head"><span class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="10" width="18" height="11" rx="2.3" stroke="currentColor" stroke-width="1.7"/><path d="M2 9.5h20M12 10v11M12 9c-6 0-8-3.8-6-5.3 2.4-1.9 6 2.3 6 5.3Zm0 0c6 0 8-3.8 6-5.3-2.4-1.9-6 2.3-6 5.3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="event-type">EVENT 02 · 카페 먹</span></div>
+              <h3>말이 되는 보물찾기</h3>
+              <p class="event-quote">“쪽지를 찾았다면 반은 성공! 나머지 반은 저녁에.”</p>
+              <span class="event-action">참여 방법 보기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              <svg class="event-ornament" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 41 50 25 84 41v38l-34 15-34-15V41ZM16 41l34 15 34-15M50 56v38" stroke="currentColor" stroke-width="5" fill="none" stroke-linejoin="round"/><path d="m50 25 16 8-34 15-16-7" stroke="currentColor" stroke-width="4" fill="none"/></svg>
+            </summary>
+            <div class="event-reveal">
+              <ol><li>카페 먹 숲에서 <strong>노란 보물 쪽지</strong>를 찾아요.</li><li><strong>1인 1장</strong>씩만 가지고, 찾은 쪽지는 잘 보관해요.</li><li>저녁 식당에서 쪽지와 <strong>짝이 되는 뒷문장</strong>을 찾으면 선물을 드려요.</li></ol>
+              <p class="event-tip">※ 여러 장을 발견하면 아직 못 찾은 동료에게 양보해 주세요.</p>
+            </div>
+          </details>
         </div>
-      </section>
-
-      <section class="section move" aria-labelledby="move-title">
-        <div class="section-head"><div><p class="section-kicker">GOOD TO KNOW</p><h2 id="move-title">이동 안내</h2></div></div>
-        <details class="accordion">
-          <summary><span class="left"><span class="s-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M5 17h14M6 17l1-7h10l1 7M8 10l2-4h4l2 4M5 17v2m14-2v2"/><circle cx="8" cy="17" r="1"/><circle cx="16" cy="17" r="1"/></svg></span>부서별 차량 이동 방법 및 주차 안내</span><span class="chevron" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary>
-          <div class="move-content">
-            <p>이동 방법은 부서별로 협의하여 선택해 주세요.</p>
-            <ul>
-              <li><strong>방법 1.</strong> 언양 1번가 주먹떡갈비 맞은편 공영주차장에 주차 후 합승</li>
-              <li><strong>방법 2.</strong> 학교에서 부서별 차량에 함께 탑승</li>
-              <li><strong>방법 3.</strong> 문수체육관 주차장에 주차 후 합승</li>
-            </ul>
-            <p class="note">※ 언양 공영주차장·석남사 주차비는 친목회에서 지원하며, 문수체육관 주차장은 평일 무료입니다.<br>※ 석남사 → 카페 먹 15:20~15:35 / 카페 먹 → 저녁 장소 17:00~17:10 이동 예정입니다.</p>
-          </div>
-        </details>
       </section>
 
       <div class="closing"><p>올 한 해도 각자의 자리에서 수고 많으셨습니다.<br>11월 18일, 가을 속에서 반갑게 만나요!</p><svg viewBox="0 0 80 54" aria-hidden="true"><path d="M39 50V29M39 29 26 16l-7 2 2-11L9 4l15-2 7-2 8 9 8-9 7 2 15 2-12 3 2 11-7-2L39 29" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M7 48c4-7 9-9 16-5M63 47c3-6 6-8 11-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
